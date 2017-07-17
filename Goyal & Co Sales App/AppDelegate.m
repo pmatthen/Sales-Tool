@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import <CHCSVParser.h>
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    NSLog(@"Documents Directory: %@", [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]);
+
+    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Data" ofType:@"csv"]];
+    
+    NSError *errorCSV = nil;
+    NSArray *rows = [NSArray arrayWithContentsOfCSVURL:fileURL];
+    
+    if (rows == nil) {
+        NSLog(@"error parsing file: %@", errorCSV.localizedDescription);
+    } else {
+        UINavigationController *myNavigationController = (UINavigationController *) self.window.rootViewController;
+        ViewController *myViewController = (ViewController *) myNavigationController.topViewController;
+        
+        myViewController.myCSVArray = rows;
+    }
+    
     return YES;
 }
 

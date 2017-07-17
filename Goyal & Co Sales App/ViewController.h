@@ -10,6 +10,19 @@
 
 @interface ViewController : UIViewController
 
+@property NSArray *myCSVArray;
+
+@property (weak, nonatomic) IBOutlet UIPickerView *towerPicker;
+@property (weak, nonatomic) IBOutlet UIPickerView *floorPicker;
+@property (weak, nonatomic) IBOutlet UIPickerView *wingPicker;
+@property (weak, nonatomic) IBOutlet UIPickerView *layoutPicker;
+@property (weak, nonatomic) IBOutlet UIPickerView *sideFacingPicker;
+@property (weak, nonatomic) IBOutlet UIPickerView *soldPicker;
+
+@property (weak, nonatomic) IBOutlet UITableView *myTableView;
+@property (weak, nonatomic) IBOutlet UILabel *recordsLabel;
+
+- (IBAction)segueToGeneratePDF:(id)sender;
 
 @end
 
