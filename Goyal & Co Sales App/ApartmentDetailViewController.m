@@ -10,13 +10,50 @@
 
 @interface ApartmentDetailViewController ()
 
+@property BOOL isLowInterestButtonPressed;
+@property BOOL isMediumInterestButtonPressed;
+@property BOOL isHighInterestButtonPressed;
+
 @end
 
 @implementation ApartmentDetailViewController
-@synthesize apartmentComplexLocationImageView, apartmentLayoutImageView, droneImageViewA, droneImageViewB, labelA, labelB, apartmentComplexLocationString, apartmentLayoutString, apartmentString;
+@synthesize apartmentComplexLocationImageView, apartmentLayoutImageView, droneImageViewA, droneImageViewB, labelA, labelB, lowInterestButton, mediumInterestButton, highInterestButton, apartmentComplexLocationString, apartmentLayoutString, apartmentString, isLowInterestButtonPressed, isMediumInterestButtonPressed, isHighInterestButtonPressed;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    lowInterestButton.layer.borderWidth = 2.0f;
+    lowInterestButton.layer.borderColor = [UIColor redColor].CGColor;
+    [lowInterestButton setBackgroundColor:[UIColor clearColor]];
+    
+    mediumInterestButton.layer.borderWidth = 2.0f;
+    mediumInterestButton.layer.borderColor = [UIColor yellowColor].CGColor;
+    [mediumInterestButton setBackgroundColor:[UIColor clearColor]];
+    
+    highInterestButton.layer.borderWidth = 2.0f;
+    highInterestButton.layer.borderColor = [UIColor greenColor].CGColor;
+    [highInterestButton setBackgroundColor:[UIColor clearColor]];
+    
+    isLowInterestButtonPressed = false;
+    isMediumInterestButtonPressed = false;
+    isHighInterestButtonPressed = false;
+    
+    NSMutableDictionary *apartmentInterestMutableDictionary = [[[NSUserDefaults standardUserDefaults] objectForKey:@"apartmentInterestMutableDictionary"] mutableCopy];
+    
+    if ([apartmentInterestMutableDictionary objectForKey:apartmentString] != nil) {
+        if ([[apartmentInterestMutableDictionary objectForKey:apartmentString] isEqual:@"Interest Level 1"]) {
+            [lowInterestButton setBackgroundColor:[UIColor redColor]];
+            isLowInterestButtonPressed = true;
+        }
+        if ([[apartmentInterestMutableDictionary objectForKey:apartmentString] isEqual:@"Interest Level 2"]) {
+            [mediumInterestButton setBackgroundColor:[UIColor yellowColor]];
+            isMediumInterestButtonPressed = true;
+        }
+        if ([[apartmentInterestMutableDictionary objectForKey:apartmentString] isEqual:@"Interest Level 3"]) {
+            [highInterestButton setBackgroundColor:[UIColor greenColor]];
+            isHighInterestButtonPressed = true;
+        }
+    }
 
     NSDictionary *myDirectionsDictionary = [[NSDictionary alloc] initWithDictionary:[self createDirectionDictionary]];
     
@@ -85,6 +122,74 @@
 
 - (IBAction)backButtonPressed:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)lowInterestButtonPressed:(id)sender {
+    
+    if (!isLowInterestButtonPressed) {
+        [lowInterestButton setBackgroundColor:[UIColor redColor]];
+        [mediumInterestButton setBackgroundColor:[UIColor clearColor]];
+        [highInterestButton setBackgroundColor:[UIColor clearColor]];
+        
+        isLowInterestButtonPressed = true;
+        isMediumInterestButtonPressed = false;
+        isHighInterestButtonPressed = false;
+        
+        NSMutableDictionary *apartmentInterestMutableDictionary = [[NSMutableDictionary alloc] init];
+        apartmentInterestMutableDictionary = [[[NSUserDefaults standardUserDefaults] objectForKey:@"apartmentInterestMutableDictionary"] mutableCopy];
+        
+        [apartmentInterestMutableDictionary setObject:@"Interest Level 1" forKey:apartmentString];
+        [[NSUserDefaults standardUserDefaults] setObject:apartmentInterestMutableDictionary forKey:@"apartmentInterestMutableDictionary"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+    } else {
+        [lowInterestButton setBackgroundColor:[UIColor clearColor]];
+        isLowInterestButtonPressed = false;
+    }
+}
+
+- (IBAction)mediumInterestButtonPressed:(id)sender {
+    if (!isMediumInterestButtonPressed) {
+        [mediumInterestButton setBackgroundColor:[UIColor yellowColor]];
+        [lowInterestButton setBackgroundColor:[UIColor clearColor]];
+        [highInterestButton setBackgroundColor:[UIColor clearColor]];
+        
+        isMediumInterestButtonPressed = true;
+        isLowInterestButtonPressed = false;
+        isHighInterestButtonPressed = false;
+        
+        NSMutableDictionary *apartmentInterestMutableDictionary = [[NSMutableDictionary alloc] init];
+        apartmentInterestMutableDictionary = [[[NSUserDefaults standardUserDefaults] objectForKey:@"apartmentInterestMutableDictionary"] mutableCopy];
+        
+        [apartmentInterestMutableDictionary setObject:@"Interest Level 2" forKey:apartmentString];
+        [[NSUserDefaults standardUserDefaults] setObject:apartmentInterestMutableDictionary forKey:@"apartmentInterestMutableDictionary"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    } else {
+        [mediumInterestButton setBackgroundColor:[UIColor clearColor]];
+        isMediumInterestButtonPressed = false;
+    }
+}
+
+- (IBAction)highInterestButtonPressed:(id)sender {
+    if (!isHighInterestButtonPressed) {
+        [highInterestButton setBackgroundColor:[UIColor greenColor]];
+        [lowInterestButton setBackgroundColor:[UIColor clearColor]];
+        [mediumInterestButton setBackgroundColor:[UIColor clearColor]];
+        
+        isHighInterestButtonPressed = true;
+        isLowInterestButtonPressed = false;
+        isMediumInterestButtonPressed = false;
+        
+        NSMutableDictionary *apartmentInterestMutableDictionary = [[NSMutableDictionary alloc] init];
+        apartmentInterestMutableDictionary = [[[NSUserDefaults standardUserDefaults] objectForKey:@"apartmentInterestMutableDictionary"] mutableCopy];
+        
+        [apartmentInterestMutableDictionary setObject:@"Interest Level 3" forKey:apartmentString];
+        [[NSUserDefaults standardUserDefaults] setObject:apartmentInterestMutableDictionary forKey:@"apartmentInterestMutableDictionary"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    } else {
+        [highInterestButton setBackgroundColor:[UIColor clearColor]];
+        isHighInterestButtonPressed = false;
+    }
 }
 
 @end

@@ -9,23 +9,23 @@
 #import "ViewController.h"
 #import "ApartmentTableViewCell.h"
 #import "ApartmentDetailViewController.h"
+#import "PDFViewController.h"
+#import <MessageUI/MessageUI.h>
 
-@interface ViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate>
- 
-@property NSMutableArray *towerArray;
-@property NSMutableArray *floorArray;
-@property NSMutableArray *wingArray;
-@property NSMutableArray *layoutArray;
-@property NSMutableArray *directionArray;
-@property NSMutableArray *isSoldArray;
-@property NSArray *myFilterArray;
-@property NSDictionary *myMasterDictionary;
-@property NSDictionary *apartmentDetailsDictionary;
+@interface ViewController (Private) <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate>
+
+- (void) generatePdfWithFilePath: (NSString *)thefilePath;
+- (void) drawPageNumber:(NSInteger)pageNum;
+- (void) drawBorder;
+- (void) drawText;
+- (void) drawLine;
+- (void) drawHeader;
+- (void) drawImage;
 
 @end
 
 @implementation ViewController
-@synthesize myCSVArray, towerPicker, floorPicker, wingPicker, layoutPicker, sideFacingPicker, soldPicker, myTableView, recordsLabel, towerArray, floorArray, wingArray, layoutArray, directionArray, isSoldArray, myFilterArray, myMasterDictionary, apartmentDetailsDictionary;
+@synthesize myCSVArray, towerPicker, floorPicker, wingPicker, layoutPicker, sideFacingPicker, soldPicker, myTableView, recordsLabel, towerArray, floorArray, wingArray, layoutArray, directionArray, isSoldArray, myFilterArray, myMasterDictionary, apartmentDetailsDictionary, apartmentInterestMutableDictionary, userDictionary, keyArray;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,6 +43,14 @@
     [soldPicker reloadAllComponents];
     
     [myTableView reloadData];
+    
+    userDictionary = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"userDictionary"]];
+    apartmentInterestMutableDictionary = [[[NSUserDefaults standardUserDefaults] objectForKey:@"apartmentInterestMutableDictionary"] mutableCopy];
+    
+    keyArray = [[NSMutableArray alloc] initWithArray:[apartmentInterestMutableDictionary allKeys]];
+    [keyArray sortUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
+        return [str1 compare:str2 options:(NSNumericSearch)];
+    }];
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -226,7 +234,7 @@
                 if ([floorDictionary objectForKey:[myApartmentDictionary objectForKey:@"Wing"]] != nil) {
                     wingDictionary = [floorDictionary objectForKey:[myApartmentDictionary objectForKey:@"Wing"]];
                     if ([wingDictionary objectForKey:[myApartmentDictionary objectForKey:@"Apartment"]] != nil) {
-                        // Yes - Raise Flag
+                    
                         NSLog(@"FLAG on floorDictionary = %@", floorDictionary);
                     } else {
                         // No - Create Apartment Dictionary and insert into Wing Dictionary into Floor Dictionary into Tower Dictionary into Master Dictionary
@@ -418,8 +426,190 @@
     return sortedFilterArray;
 }
 
+- (void) drawBorder {
+    CGContextRef    currentContext = UIGraphicsGetCurrentContext();
+    UIColor *borderColor = [UIColor brownColor];
+    
+    CGRect rectFrame = CGRectMake(kBorderInset, kBorderInset, pageSize.width-kBorderInset*2, pageSize.height-kBorderInset*2);
+    
+    CGContextSetStrokeColorWithColor(currentContext, borderColor.CGColor);
+    CGContextSetLineWidth(currentContext, kBorderWidth);
+    CGContextStrokeRect(currentContext, rectFrame);
+}
+
+- (void)drawPageNumber:(NSInteger)pageNumber {
+    NSString* pageNumberString = [NSString stringWithFormat:@"Page %d", pageNumber];
+    UIFont* theFont = [UIFont systemFontOfSize:12];
+    
+    CGSize pageNumberStringSize = [pageNumberString sizeWithFont:theFont
+                                               constrainedToSize:pageSize
+                                                   lineBreakMode:UILineBreakModeWordWrap];
+    
+    CGRect stringRenderingRect = CGRectMake(kBorderInset,
+                                            pageSize.height - 40.0,
+                                            pageSize.width - 2*kBorderInset,
+                                            pageNumberStringSize.height);
+    
+    [pageNumberString drawInRect:stringRenderingRect withFont:theFont lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentCenter];
+}
+
+- (void) drawHeader {
+    CGContextRef    currentContext = UIGraphicsGetCurrentContext();
+    CGContextSetRGBFillColor(currentContext, 0.3, 0.7, 0.2, 1.0);
+    
+    NSString *textToDraw = @"NEW NEW Customer Details";
+    
+    UIFont *font = [UIFont systemFontOfSize:24.0];
+    
+    CGSize stringSize = [textToDraw sizeWithFont:font constrainedToSize:CGSizeMake(pageSize.width - 2*kBorderInset-2*kMarginInset, pageSize.height - 2*kBorderInset - 2*kMarginInset) lineBreakMode:UILineBreakModeWordWrap];
+    
+    CGRect renderingRect = CGRectMake(kBorderInset + kMarginInset, kBorderInset + kMarginInset, pageSize.width - 2*kBorderInset - 2*kMarginInset, stringSize.height);
+    
+    [textToDraw drawInRect:renderingRect withFont:font lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentLeft];
+}
+
+- (void) drawText {
+    CGContextRef    currentContext = UIGraphicsGetCurrentContext();
+    CGContextSetRGBFillColor(currentContext, 0.0, 0.0, 0.0, 1.0);
+    
+    NSString *textToDraw = [NSString stringWithFormat:@"Name: %@\nEmail: %@\nPhone: %@\n\n\n", [userDictionary objectForKey:@"name"], [userDictionary objectForKey:@"email"], [userDictionary objectForKey:@"phone"]];
+    
+    for (int i = 0; i < [keyArray count]; i++) {
+        textToDraw = [NSString stringWithFormat:@"%@\n%@: %@", textToDraw, [keyArray objectAtIndex:i], [apartmentInterestMutableDictionary objectForKey:[keyArray objectAtIndex:i]]];
+    }
+    
+    UIFont *font = [UIFont systemFontOfSize:14.0];
+    
+    CGSize stringSize = [textToDraw sizeWithFont:font
+                               constrainedToSize:CGSizeMake(pageSize.width - 2*kBorderInset-2*kMarginInset, pageSize.height - 2*kBorderInset - 2*kMarginInset)
+                                   lineBreakMode:UILineBreakModeWordWrap];
+    
+    CGRect renderingRect = CGRectMake(kBorderInset + kMarginInset, kBorderInset + kMarginInset + 50.0, pageSize.width - 2*kBorderInset - 2*kMarginInset, stringSize.height);
+    
+    [textToDraw drawInRect:renderingRect
+                  withFont:font
+             lineBreakMode:UILineBreakModeWordWrap
+                 alignment:UITextAlignmentLeft];
+    
+}
+
+- (void) drawLine {
+    CGContextRef    currentContext = UIGraphicsGetCurrentContext();
+    
+    CGContextSetLineWidth(currentContext, kLineWidth);
+    
+    CGContextSetStrokeColorWithColor(currentContext, [UIColor blueColor].CGColor);
+    
+    CGPoint startPoint = CGPointMake(kMarginInset + kBorderInset, kMarginInset + kBorderInset + 40.0);
+    CGPoint endPoint = CGPointMake(pageSize.width - 2*kMarginInset -2*kBorderInset, kMarginInset + kBorderInset + 40.0);
+    
+    CGContextBeginPath(currentContext);
+    CGContextMoveToPoint(currentContext, startPoint.x, startPoint.y);
+    CGContextAddLineToPoint(currentContext, endPoint.x, endPoint.y);
+    
+    CGContextClosePath(currentContext);
+    CGContextDrawPath(currentContext, kCGPathFillStroke);
+}
+
+- (void) drawImage {
+    UIImage * demoImage = [UIImage imageNamed:@"B01.png"];
+    [demoImage drawInRect:CGRectMake( (pageSize.width - demoImage.size.width/2)/2, 350, demoImage.size.width/2, demoImage.size.height/2)];
+}
+
+- (void) generatePdfWithFilePath: (NSString *)thefilePath {
+    UIGraphicsBeginPDFContextToFile(thefilePath, CGRectZero, nil);
+    
+    NSInteger currentPage = 0;
+    BOOL done = NO;
+    do {
+        //Start a new page.
+        UIGraphicsBeginPDFPageWithInfo(CGRectMake(0, 0, pageSize.width, pageSize.height), nil);
+        
+        //Draw a page number at the bottom of each page.
+        currentPage++;
+        [self drawPageNumber:currentPage];
+        
+        //Draw a border for each page.
+        [self drawBorder];
+        
+        //Draw text for our header.
+        [self drawHeader];
+        
+        //Draw a line below the header.
+        [self drawLine];
+        
+        //Draw some text for the page.
+        [self drawText];
+        
+        //        //Draw an image
+        //        [self drawImage];
+        done = YES;
+    } while (!done);
+    
+    // Close the PDF context and write the contents out.
+    UIGraphicsEndPDFContext();
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    switch (result) {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 - (IBAction)segueToGeneratePDF:(id)sender {
-    [self performSegueWithIdentifier:@"PDFSegue" sender:self];
+    pageSize = CGSizeMake(612, 792);
+    NSString *fileName = @"Demo.pdf";
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *pdfFileName = [documentsDirectory stringByAppendingPathComponent:fileName];
+    
+    [self generatePdfWithFilePath:pdfFileName];
+    
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *emailDialog = [[MFMailComposeViewController alloc] init];
+        [emailDialog setMailComposeDelegate:self];
+        NSMutableData *myPdfData = [NSMutableData dataWithContentsOfFile:pdfFileName];
+        [emailDialog addAttachmentData:myPdfData mimeType:@"application/pdf" fileName:@"Demo"];
+        [self.navigationController presentViewController:emailDialog animated:YES completion:nil];
+    } else {
+        NSLog(@"Mail not Working!!");
+    }
+    
+}
+
+- (IBAction)segueToCustomerDetails:(id)sender {
+    [self performSegueWithIdentifier:@"CustomerDetailSegue" sender:self];
+}
+
+- (IBAction)resetButtonPressed:(id)sender {
+    NSLog(@"Ask user to confirm");
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *myDictionary = [userDefaults dictionaryRepresentation];
+    for (id key in myDictionary) {
+        [userDefaults removeObjectForKey:key];
+    }
+    [userDefaults synchronize];
 }
 
 @end

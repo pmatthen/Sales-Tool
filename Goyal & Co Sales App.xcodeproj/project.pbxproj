@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		8CCD0E0018EE3EF247F2BD4C /* libPods-Goyal & Co Sales App.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE77350C82EBDCBF1C9B458B /* libPods-Goyal & Co Sales App.a */; };
 		F204F5511F0FB0DB00531773 /* ApartmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F204F5501F0FB0DB00531773 /* ApartmentTableViewCell.m */; };
-		F207262D1F14E1FF0022A611 /* PDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F207262C1F14E1FF0022A611 /* PDFViewController.m */; };
+		F2186ECA1F1F5182001EF71E /* CustomerDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2186EC91F1F5182001EF71E /* CustomerDetailTableViewCell.m */; };
 		F21AB96E1F1783DA00F15CFC /* A0001A.png in Resources */ = {isa = PBXBuildFile; fileRef = F21AB6B11F1783D500F15CFC /* A0001A.png */; };
 		F21AB96F1F1783DA00F15CFC /* A0001B.png in Resources */ = {isa = PBXBuildFile; fileRef = F21AB6B21F1783D500F15CFC /* A0001B.png */; };
 		F21AB9701F1783DA00F15CFC /* A0002A.png in Resources */ = {isa = PBXBuildFile; fileRef = F21AB6B31F1783D500F15CFC /* A0002A.png */; };
@@ -753,6 +753,7 @@
 		F2EF240C1F133A0500C6AB84 /* E04.png in Resources */ = {isa = PBXBuildFile; fileRef = F2EF23F01F133A0500C6AB84 /* E04.png */; };
 		F2EF240D1F133A0500C6AB84 /* E05.png in Resources */ = {isa = PBXBuildFile; fileRef = F2EF23F11F133A0500C6AB84 /* E05.png */; };
 		F2EF240E1F133A0500C6AB84 /* E06.png in Resources */ = {isa = PBXBuildFile; fileRef = F2EF23F21F133A0500C6AB84 /* E06.png */; };
+		F2F281D51F1F50C700DFDCF6 /* CustomerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F281D41F1F50C700DFDCF6 /* CustomerDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -761,8 +762,8 @@
 		CE77350C82EBDCBF1C9B458B /* libPods-Goyal & Co Sales App.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Goyal & Co Sales App.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F204F54F1F0FB0DB00531773 /* ApartmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApartmentTableViewCell.h; sourceTree = "<group>"; };
 		F204F5501F0FB0DB00531773 /* ApartmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApartmentTableViewCell.m; sourceTree = "<group>"; };
-		F207262B1F14E1FF0022A611 /* PDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFViewController.h; sourceTree = "<group>"; };
-		F207262C1F14E1FF0022A611 /* PDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFViewController.m; sourceTree = "<group>"; };
+		F2186EC81F1F5182001EF71E /* CustomerDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerDetailTableViewCell.h; sourceTree = "<group>"; };
+		F2186EC91F1F5182001EF71E /* CustomerDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerDetailTableViewCell.m; sourceTree = "<group>"; };
 		F21AB6B11F1783D500F15CFC /* A0001A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = A0001A.png; sourceTree = "<group>"; };
 		F21AB6B21F1783D500F15CFC /* A0001B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = A0001B.png; sourceTree = "<group>"; };
 		F21AB6B31F1783D500F15CFC /* A0002A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = A0002A.png; sourceTree = "<group>"; };
@@ -1511,6 +1512,8 @@
 		F2EF23F01F133A0500C6AB84 /* E04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E04.png; sourceTree = "<group>"; };
 		F2EF23F11F133A0500C6AB84 /* E05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E05.png; sourceTree = "<group>"; };
 		F2EF23F21F133A0500C6AB84 /* E06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E06.png; sourceTree = "<group>"; };
+		F2F281D31F1F50C700DFDCF6 /* CustomerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerDetailViewController.h; sourceTree = "<group>"; };
+		F2F281D41F1F50C700DFDCF6 /* CustomerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1540,6 +1543,17 @@
 				72988B608DC27E1AE4CE7D43 /* Pods-Goyal & Co Sales App.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		F2186ECB1F1F52B7001EF71E /* CustomerDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F2F281D31F1F50C700DFDCF6 /* CustomerDetailViewController.h */,
+				F2F281D41F1F50C700DFDCF6 /* CustomerDetailViewController.m */,
+				F2186EC81F1F5182001EF71E /* CustomerDetailTableViewCell.h */,
+				F2186EC91F1F5182001EF71E /* CustomerDetailTableViewCell.m */,
+			);
+			name = CustomerDetailViewController;
 			sourceTree = "<group>";
 		};
 		F21ABC2B1F1783ED00F15CFC /* Drone Dummy Images */ = {
@@ -2275,12 +2289,8 @@
 				F2C392921F0220FE004E079C /* AppDelegate.m */,
 				F2C392941F0220FE004E079C /* ViewController.h */,
 				F2C392951F0220FE004E079C /* ViewController.m */,
-				F204F54F1F0FB0DB00531773 /* ApartmentTableViewCell.h */,
-				F204F5501F0FB0DB00531773 /* ApartmentTableViewCell.m */,
-				F2EF23CA1F132F0100C6AB84 /* ApartmentDetailViewController.h */,
-				F2EF23CB1F132F0100C6AB84 /* ApartmentDetailViewController.m */,
-				F207262B1F14E1FF0022A611 /* PDFViewController.h */,
-				F207262C1F14E1FF0022A611 /* PDFViewController.m */,
+				F2186ECB1F1F52B7001EF71E /* CustomerDetailViewController */,
+				F2F281D21F1F50A600DFDCF6 /* ApartmentDetailViewController */,
 				F2C392971F0220FE004E079C /* Main.storyboard */,
 				F2C3929D1F0220FE004E079C /* Assets.xcassets */,
 				F2C3929F1F0220FE004E079C /* LaunchScreen.storyboard */,
@@ -2332,6 +2342,17 @@
 				F2C3928F1F0220FE004E079C /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F2F281D21F1F50A600DFDCF6 /* ApartmentDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F2EF23CA1F132F0100C6AB84 /* ApartmentDetailViewController.h */,
+				F2EF23CB1F132F0100C6AB84 /* ApartmentDetailViewController.m */,
+				F204F54F1F0FB0DB00531773 /* ApartmentTableViewCell.h */,
+				F204F5501F0FB0DB00531773 /* ApartmentTableViewCell.m */,
+			);
+			name = ApartmentDetailViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3197,7 +3218,8 @@
 				F204F5511F0FB0DB00531773 /* ApartmentTableViewCell.m in Sources */,
 				F2C392931F0220FE004E079C /* AppDelegate.m in Sources */,
 				F2EF23CC1F132F0100C6AB84 /* ApartmentDetailViewController.m in Sources */,
-				F207262D1F14E1FF0022A611 /* PDFViewController.m in Sources */,
+				F2F281D51F1F50C700DFDCF6 /* CustomerDetailViewController.m in Sources */,
+				F2186ECA1F1F5182001EF71E /* CustomerDetailTableViewCell.m in Sources */,
 				F2C392901F0220FE004E079C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

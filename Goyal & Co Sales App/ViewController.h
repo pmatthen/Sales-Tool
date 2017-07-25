@@ -8,9 +8,32 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+// These values are for the PDF generating methods.
+
+#define kBorderInset            20.0
+#define kBorderWidth            1.0
+#define kMarginInset            10.0
+#define kLineWidth              1.0
+
+@interface ViewController : UIViewController {
+    CGSize pageSize;
+}
+
+@property NSMutableDictionary *apartmentInterestMutableDictionary;
+@property NSMutableDictionary *userDictionary;
+@property NSMutableArray *keyArray;
 
 @property NSArray *myCSVArray;
+
+@property NSMutableArray *towerArray;
+@property NSMutableArray *floorArray;
+@property NSMutableArray *wingArray;
+@property NSMutableArray *layoutArray;
+@property NSMutableArray *directionArray;
+@property NSMutableArray *isSoldArray;
+@property NSArray *myFilterArray;
+@property NSDictionary *myMasterDictionary;
+@property NSDictionary *apartmentDetailsDictionary;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *towerPicker;
 @property (weak, nonatomic) IBOutlet UIPickerView *floorPicker;
@@ -23,6 +46,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *recordsLabel;
 
 - (IBAction)segueToGeneratePDF:(id)sender;
+- (IBAction)segueToCustomerDetails:(id)sender;
+- (IBAction)resetButtonPressed:(id)sender;
 
 @end
 

@@ -17,10 +17,17 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelA;
 @property (weak, nonatomic) IBOutlet UILabel *labelB;
 
+@property (weak, nonatomic) IBOutlet UIButton *lowInterestButton;
+@property (weak, nonatomic) IBOutlet UIButton *mediumInterestButton;
+@property (weak, nonatomic) IBOutlet UIButton *highInterestButton;
+
 @property NSString *apartmentComplexLocationString;
 @property NSString *apartmentLayoutString;
 @property NSString *apartmentString;
 
 - (IBAction)backButtonPressed:(id)sender;
+- (IBAction)lowInterestButtonPressed:(id)sender;
+- (IBAction)mediumInterestButtonPressed:(id)sender;
+- (IBAction)highInterestButtonPressed:(id)sender;
 
 @end

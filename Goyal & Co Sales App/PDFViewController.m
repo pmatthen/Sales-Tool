@@ -21,6 +21,7 @@
 @end
 
 @implementation PdfGenerationDemoViewController
+@synthesize apartmentInterestMutableDictionary, userDictionary, keyArray;
 
 - (void) drawBorder {
     CGContextRef    currentContext = UIGraphicsGetCurrentContext();
@@ -53,7 +54,7 @@
     CGContextRef    currentContext = UIGraphicsGetCurrentContext();
     CGContextSetRGBFillColor(currentContext, 0.3, 0.7, 0.2, 1.0);
     
-    NSString *textToDraw = @"Pdf Demo - iOSLearner.com";
+    NSString *textToDraw = @"Customer Details";
     
     UIFont *font = [UIFont systemFontOfSize:24.0];
     
@@ -68,7 +69,11 @@
     CGContextRef    currentContext = UIGraphicsGetCurrentContext();
     CGContextSetRGBFillColor(currentContext, 0.0, 0.0, 0.0, 1.0);
     
-    NSString *textToDraw = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.";
+    NSString *textToDraw = [NSString stringWithFormat:@"Name: %@\nEmail: %@\nPhone: %@\n\n\n", [userDictionary objectForKey:@"name"], [userDictionary objectForKey:@"email"], [userDictionary objectForKey:@"phone"]];
+    
+    for (int i = 0; i < [keyArray count]; i++) {
+        textToDraw = [NSString stringWithFormat:@"%@\n%@: %@", textToDraw, [keyArray objectAtIndex:i], [apartmentInterestMutableDictionary objectForKey:[keyArray objectAtIndex:i]]];
+    }
     
     UIFont *font = [UIFont systemFontOfSize:14.0];
     
@@ -124,7 +129,7 @@
         //Draw a border for each page.
         [self drawBorder];
         
-        //Draw text fo our header.
+        //Draw text for our header.
         [self drawHeader];
         
         //Draw a line below the header.
@@ -133,8 +138,8 @@
         //Draw some text for the page.
         [self drawText];
         
-        //Draw an image
-        [self drawImage];
+//        //Draw an image
+//        [self drawImage];
         done = YES;
     } while (!done);
     
@@ -147,7 +152,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    userDictionary = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"userDictionary"]];
+    apartmentInterestMutableDictionary = [[[NSUserDefaults standardUserDefaults] objectForKey:@"apartmentInterestMutableDictionary"] mutableCopy];
     
+    keyArray = [[NSMutableArray alloc] initWithArray:[apartmentInterestMutableDictionary allKeys]];
+    [keyArray sortUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
+        return [str1 compare:str2 options:(NSNumericSearch)];
+    }];
 }
 
 - (void)viewDidUnload {
@@ -170,6 +181,10 @@
     NSString *pdfFileName = [documentsDirectory stringByAppendingPathComponent:fileName];
     
     [self generatePdfWithFilePath:pdfFileName];
+}
+
+- (IBAction)backButtonPressed:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

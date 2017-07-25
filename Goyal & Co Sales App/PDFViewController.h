@@ -19,6 +19,11 @@
     CGSize pageSize;
 }
 
+@property NSMutableDictionary *apartmentInterestMutableDictionary;
+@property NSMutableDictionary *userDictionary;
+@property NSMutableArray *keyArray;
+
 - (IBAction)generatePdfButtonPressed:(id)sender;
+- (IBAction)backButtonPressed:(id)sender;
 
 @end
