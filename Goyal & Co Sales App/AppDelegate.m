@@ -21,6 +21,9 @@
     // Using a CSV plugin (Cocoapod), I am converting the CSV into a Arrays within an Array and passing it to my main Viewcontroller.
     
     NSLog(@"Documents Directory: %@", [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]);
+    
+    [[NSUserDefaults standardUserDefaults] setObject:@"DetailViewPage1Segue" forKey:@"apartmentDetailViewSegue"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 
     NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Data" ofType:@"csv"]];
     

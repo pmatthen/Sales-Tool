@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F2C3928A1F0220FE004E079C"
-               BuildableName = "Goyal &amp; Co Sales App.app"
-               BlueprintName = "Goyal &amp; Co Sales App"
-               ReferencedContainer = "container:Goyal &amp; Co Sales App.xcodeproj">
+               BuildableName = "Sales Tool.app"
+               BlueprintName = "Sales Tool"
+               ReferencedContainer = "container:Sales Tool.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F2C3928A1F0220FE004E079C"
-            BuildableName = "Goyal &amp; Co Sales App.app"
-            BlueprintName = "Goyal &amp; Co Sales App"
-            ReferencedContainer = "container:Goyal &amp; Co Sales App.xcodeproj">
+            BuildableName = "Sales Tool.app"
+            BlueprintName = "Sales Tool"
+            ReferencedContainer = "container:Sales Tool.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F2C3928A1F0220FE004E079C"
-            BuildableName = "Goyal &amp; Co Sales App.app"
-            BlueprintName = "Goyal &amp; Co Sales App"
-            ReferencedContainer = "container:Goyal &amp; Co Sales App.xcodeproj">
+            BuildableName = "Sales Tool.app"
+            BlueprintName = "Sales Tool"
+            ReferencedContainer = "container:Sales Tool.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -82,9 +82,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F2C3928A1F0220FE004E079C"
-            BuildableName = "Goyal &amp; Co Sales App.app"
-            BlueprintName = "Goyal &amp; Co Sales App"
-            ReferencedContainer = "container:Goyal &amp; Co Sales App.xcodeproj">
+            BuildableName = "Sales Tool.app"
+            BlueprintName = "Sales Tool"
+            ReferencedContainer = "container:Sales Tool.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

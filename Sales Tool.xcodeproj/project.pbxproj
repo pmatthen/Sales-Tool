@@ -700,6 +700,8 @@
 		F22D23E51F2EFA3A005EDABC /* open-sans.bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F22D23E11F2EF98D005EDABC /* open-sans.bold.ttf */; };
 		F22D23E61F2EFA3A005EDABC /* open-sans.light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F22D23E21F2EF98D005EDABC /* open-sans.light.ttf */; };
 		F22D23E71F2EFA3A005EDABC /* open-sans.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F22D23E31F2EF98D005EDABC /* open-sans.regular.ttf */; };
+		F26DC71F1F91AE470095744A /* homeicon.png in Resources */ = {isa = PBXBuildFile; fileRef = F26DC71D1F91AE470095744A /* homeicon.png */; };
+		F26DC7201F91AE470095744A /* emailicon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F26DC71E1F91AE470095744A /* emailicon.jpg */; };
 		F2815FF81F7380090090481D /* Orchid Whitefield.png in Resources */ = {isa = PBXBuildFile; fileRef = F2815FF71F7380090090481D /* Orchid Whitefield.png */; };
 		F2815FFB1F7383AD0090481D /* ApartmentDetailViewPage1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2815FFA1F7383AD0090481D /* ApartmentDetailViewPage1ViewController.m */; };
 		F2815FFE1F7383C90090481D /* ApartmentDetailViewPage3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2815FFD1F7383C90090481D /* ApartmentDetailViewPage3ViewController.m */; };
@@ -1464,12 +1466,14 @@
 		F22D23E11F2EF98D005EDABC /* open-sans.bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open-sans.bold.ttf"; sourceTree = "<group>"; };
 		F22D23E21F2EF98D005EDABC /* open-sans.light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open-sans.light.ttf"; sourceTree = "<group>"; };
 		F22D23E31F2EF98D005EDABC /* open-sans.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open-sans.regular.ttf"; sourceTree = "<group>"; };
+		F26DC71D1F91AE470095744A /* homeicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeicon.png; sourceTree = "<group>"; };
+		F26DC71E1F91AE470095744A /* emailicon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = emailicon.jpg; sourceTree = "<group>"; };
 		F2815FF71F7380090090481D /* Orchid Whitefield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orchid Whitefield.png"; sourceTree = "<group>"; };
 		F2815FF91F7383AD0090481D /* ApartmentDetailViewPage1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApartmentDetailViewPage1ViewController.h; sourceTree = "<group>"; };
 		F2815FFA1F7383AD0090481D /* ApartmentDetailViewPage1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApartmentDetailViewPage1ViewController.m; sourceTree = "<group>"; };
 		F2815FFC1F7383C90090481D /* ApartmentDetailViewPage3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApartmentDetailViewPage3ViewController.h; sourceTree = "<group>"; };
 		F2815FFD1F7383C90090481D /* ApartmentDetailViewPage3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApartmentDetailViewPage3ViewController.m; sourceTree = "<group>"; };
-		F2C3928B1F0220FE004E079C /* Goyal & Co Sales App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Goyal & Co Sales App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2C3928B1F0220FE004E079C /* Sales Tool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sales Tool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2C3928F1F0220FE004E079C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F2C392911F0220FE004E079C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F2C392921F0220FE004E079C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -2306,7 +2310,7 @@
 		F2C3928C1F0220FE004E079C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F2C3928B1F0220FE004E079C /* Goyal & Co Sales App.app */,
+				F2C3928B1F0220FE004E079C /* Sales Tool.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2337,6 +2341,8 @@
 		F2C3928E1F0220FE004E079C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F26DC71D1F91AE470095744A /* homeicon.png */,
+				F26DC71E1F91AE470095744A /* emailicon.jpg */,
 				F2D148261F74EB21000EAA97 /* Project Information.png */,
 				F2D147EC1F74467A000EAA97 /* Compass.png */,
 				F22D23E41F2EF993005EDABC /* Fonts */,
@@ -2400,9 +2406,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F2C3928A1F0220FE004E079C /* Goyal & Co Sales App */ = {
+		F2C3928A1F0220FE004E079C /* Sales Tool */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F2C392A51F0220FE004E079C /* Build configuration list for PBXNativeTarget "Goyal & Co Sales App" */;
+			buildConfigurationList = F2C392A51F0220FE004E079C /* Build configuration list for PBXNativeTarget "Sales Tool" */;
 			buildPhases = (
 				39AF26CE34FF3496625B8E08 /* [CP] Check Pods Manifest.lock */,
 				F2C392871F0220FE004E079C /* Sources */,
@@ -2415,9 +2421,9 @@
 			);
 			dependencies = (
 			);
-			name = "Goyal & Co Sales App";
+			name = "Sales Tool";
 			productName = "Goyal & Co Sales App";
-			productReference = F2C3928B1F0220FE004E079C /* Goyal & Co Sales App.app */;
+			productReference = F2C3928B1F0220FE004E079C /* Sales Tool.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2436,7 +2442,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F2C392861F0220FE004E079C /* Build configuration list for PBXProject "Goyal & Co Sales App" */;
+			buildConfigurationList = F2C392861F0220FE004E079C /* Build configuration list for PBXProject "Sales Tool" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -2449,7 +2455,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F2C3928A1F0220FE004E079C /* Goyal & Co Sales App */,
+				F2C3928A1F0220FE004E079C /* Sales Tool */,
 			);
 		};
 /* End PBXProject section */
@@ -2576,6 +2582,7 @@
 				F2237A851F2A1FFD00A4A078 /* E0214SE.jpg in Resources */,
 				F223799F1F2A1FFD00A4A078 /* C0515SW.jpg in Resources */,
 				F22379DB1F2A1FFD00A4A078 /* D0115E.jpg in Resources */,
+				F26DC7201F91AE470095744A /* emailicon.jpg in Resources */,
 				F223788A1F2A1FFD00A4A078 /* A0401W.jpg in Resources */,
 				F22379AB1F2A1FFD00A4A078 /* C0602NW.jpg in Resources */,
 				F2237AA81F2A1FFD00A4A078 /* E0315E.jpg in Resources */,
@@ -2882,6 +2889,7 @@
 				F223790A1F2A1FFD00A4A078 /* B0416SE.jpg in Resources */,
 				F223799B1F2A1FFD00A4A078 /* C0513SW.jpg in Resources */,
 				F22379A21F2A1FFD00A4A078 /* C0517NW.jpg in Resources */,
+				F26DC71F1F91AE470095744A /* homeicon.png in Resources */,
 				F22379CB1F2A1FFD00A4A078 /* C0618NW.jpg in Resources */,
 				F22379FA1F2A1FFD00A4A078 /* D0213SE.jpg in Resources */,
 				F2237AB81F2A1FFD00A4A078 /* E0408W.jpg in Resources */,
@@ -3419,7 +3427,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F2C392861F0220FE004E079C /* Build configuration list for PBXProject "Goyal & Co Sales App" */ = {
+		F2C392861F0220FE004E079C /* Build configuration list for PBXProject "Sales Tool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F2C392A31F0220FE004E079C /* Debug */,
@@ -3428,7 +3436,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F2C392A51F0220FE004E079C /* Build configuration list for PBXNativeTarget "Goyal & Co Sales App" */ = {
+		F2C392A51F0220FE004E079C /* Build configuration list for PBXNativeTarget "Sales Tool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F2C392A61F0220FE004E079C /* Debug */,

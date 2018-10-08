@@ -14,20 +14,27 @@
 @property (weak, nonatomic) IBOutlet UIImageView *apartmentLayoutImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *droneImageViewA;
 @property (weak, nonatomic) IBOutlet UIImageView *droneImageViewB;
-@property (weak, nonatomic) IBOutlet UILabel *labelA;
-@property (weak, nonatomic) IBOutlet UILabel *labelB;
-
+@property (weak, nonatomic) IBOutlet UILabel *droneImageViewALabel;
+@property (weak, nonatomic) IBOutlet UILabel *droneImageViewBLabel;
 @property (weak, nonatomic) IBOutlet UIButton *lowInterestButton;
 @property (weak, nonatomic) IBOutlet UIButton *mediumInterestButton;
 @property (weak, nonatomic) IBOutlet UIButton *highInterestButton;
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 
 @property NSString *apartmentComplexLocationString;
 @property NSString *apartmentLayoutString;
 @property NSString *apartmentString;
+@property NSString *towerString;
+@property NSString *wingString;
+@property NSString *floorString;
+@property NSString *sqftString;
 
-- (IBAction)backButtonPressed:(id)sender;
+- (IBAction)homeButtonPressed:(id)sender;
 - (IBAction)lowInterestButtonPressed:(id)sender;
 - (IBAction)mediumInterestButtonPressed:(id)sender;
 - (IBAction)highInterestButtonPressed:(id)sender;
+- (IBAction)emailCustomerButtonPressed:(id)sender;
+- (IBAction)page1ButtonPressed:(id)sender;
+- (IBAction)page3ButtonPressed:(id)sender;
 
 @end

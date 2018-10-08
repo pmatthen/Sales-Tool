@@ -11,7 +11,6 @@
 @interface ApartmentTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *apartmentLabel;
-@property (weak, nonatomic) IBOutlet UILabel *towerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *wingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *floorLabel;
 @property (weak, nonatomic) IBOutlet UILabel *layoutLabel;

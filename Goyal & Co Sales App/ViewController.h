@@ -35,6 +35,10 @@
 @property NSDictionary *myMasterDictionary;
 @property NSDictionary *apartmentDetailsDictionary;
 
+@property (weak, nonatomic) IBOutlet UIButton *resetButton;
+@property (weak, nonatomic) IBOutlet UIButton *generatePDFButton;
+@property (weak, nonatomic) IBOutlet UIButton *customerDetailsButton;
+
 @property (weak, nonatomic) IBOutlet UIPickerView *towerPicker;
 @property (weak, nonatomic) IBOutlet UIPickerView *floorPicker;
 @property (weak, nonatomic) IBOutlet UIPickerView *wingPicker;

@@ -1,18 +1,21 @@
 PODS:
   - CHCSVParser (2.1.0)
+  - PSPushPopPressView (0.0.1)
   - Realm (2.8.3):
     - Realm/Headers (= 2.8.3)
   - Realm/Headers (2.8.3)
 
 DEPENDENCIES:
   - CHCSVParser (~> 2.1)
+  - PSPushPopPressView (~> 0.0)
   - Realm
   - Realm/Headers
 
 SPEC CHECKSUMS:
   CHCSVParser: 3bcc7bdb72111a31222e95d57eacceefe4e537e8
+  PSPushPopPressView: fdb4d2b4421f9f29844071c1472337f17e35ad66
   Realm: 3601ef091c8c499a31101d8563b991e75546cdce
 
-PODFILE CHECKSUM: 896c67f961f8b12d408b32a608f0d07ba8ef726d
+PODFILE CHECKSUM: fe9a3167a25d866bf3b4630913856d2fad6fd2b3
 
 COCOAPODS: 1.1.1

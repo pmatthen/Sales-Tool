@@ -8,9 +8,13 @@
 
 #import "ViewController.h"
 #import "ApartmentTableViewCell.h"
+#import "ApartmentDetailViewPage1ViewController.h"
 #import "ApartmentDetailViewController.h"
+#import "ApartmentDetailViewPage3ViewController.h"
+#import "CustomerDetailViewController.h"
 #import "PDFViewController.h"
 #import <MessageUI/MessageUI.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface ViewController (Private) <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate>
 
@@ -25,11 +29,29 @@
 @end
 
 @implementation ViewController
-@synthesize myCSVArray, towerPicker, floorPicker, wingPicker, layoutPicker, sideFacingPicker, soldPicker, myTableView, recordsLabel, towerArray, floorArray, wingArray, layoutArray, directionArray, isSoldArray, myFilterArray, myMasterDictionary, apartmentDetailsDictionary, apartmentInterestMutableDictionary, userDictionary, keyArray;
+@synthesize myCSVArray, resetButton, generatePDFButton, customerDetailsButton ,towerPicker, floorPicker, wingPicker, layoutPicker, sideFacingPicker, soldPicker, myTableView, recordsLabel, towerArray, floorArray, wingArray, layoutArray, directionArray, isSoldArray, myFilterArray, myMasterDictionary, apartmentDetailsDictionary, apartmentInterestMutableDictionary, userDictionary, keyArray;
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [myTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    resetButton.layer.borderWidth = 2.0f;
+    resetButton.layer.borderColor = [UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:1.0f].CGColor;
+    resetButton.frame = CGRectMake(resetButton.frame.origin.x, resetButton.frame.origin.y, (resetButton.frame.size.width + 40), (resetButton.frame.size.height + 10));
+    
+    generatePDFButton.layer.borderWidth = 2.0f;
+    generatePDFButton.layer.borderColor = [UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:1.0f].CGColor;
+    generatePDFButton.frame = CGRectMake(generatePDFButton.frame.origin.x, generatePDFButton.frame.origin.y, (generatePDFButton.frame.size.width + 40), (generatePDFButton.frame.size.height + 10));
+    
+    customerDetailsButton.layer.borderWidth = 2.0f;
+    customerDetailsButton.layer.borderColor = [UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:1.0f].CGColor;
+    customerDetailsButton.frame = CGRectMake(customerDetailsButton.frame.origin.x, customerDetailsButton.frame.origin.y, (customerDetailsButton.frame.size.width + 40), (customerDetailsButton.frame.size.height + 10));
     
     myMasterDictionary = [[NSDictionary alloc] initWithDictionary:[self buildNSDictionaryfromNSArray:myCSVArray]];
     NSLog(@"myMasterDictionary = %@", myMasterDictionary);
@@ -103,6 +125,34 @@
     return nil;
 }
 
+-(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
+    UILabel *label = [[UILabel alloc] init];
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont fontWithName:@"OpenSans" size:21];
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    if (pickerView == towerPicker) {
+        label.text = [NSString stringWithFormat:@"%@", towerArray[row]];
+    }
+    if (pickerView == floorPicker) {
+        label.text = [NSString stringWithFormat:@"%@", floorArray[row]];
+    }
+    if (pickerView == wingPicker) {
+        label.text = [NSString stringWithFormat:@"%@", wingArray[row]];
+    }
+    if (pickerView == layoutPicker) {
+        label.text = [NSString stringWithFormat:@"%@", layoutArray[row]];
+    }
+    if (pickerView == sideFacingPicker) {
+        label.text = [NSString stringWithFormat:@"%@", directionArray[row]];
+    }
+    if (pickerView == soldPicker) {
+        label.text = [NSString stringWithFormat:@"%@", isSoldArray[row]];
+    }
+    
+    return label;
+}
+
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
     NSString *towerFilter = [towerArray objectAtIndex:[towerPicker selectedRowInComponent:0]];
@@ -115,6 +165,7 @@
     myFilterArray = [[NSArray alloc] initWithArray:[self buildFilterArrayFromTower:towerFilter andFloor:floorFilter andWing:wingFilter andLayout:layoutFilter andSideFacing:directionFilter andIsSold:isSoldFilter andMasterDictionary:myMasterDictionary]];
     
     [myTableView reloadData];
+    [myTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -134,13 +185,22 @@
     
     NSDictionary *tempApartmentDictionary = [[NSDictionary alloc] initWithDictionary:[myFilterArray objectAtIndex:indexPath.row]];
     
-    cell.apartmentLabel.text = [tempApartmentDictionary objectForKey:@"Apartment"];
-    cell.towerLabel.text = [tempApartmentDictionary objectForKey:@"Tower"];
+    cell.apartmentLabel.text = [NSString stringWithFormat:@"%@%@", [tempApartmentDictionary objectForKey:@"Tower"], [tempApartmentDictionary objectForKey:@"Apartment"]];
     cell.floorLabel.text = [tempApartmentDictionary objectForKey:@"Floor"];
     cell.wingLabel.text = [tempApartmentDictionary objectForKey:@"Wing"];
     cell.layoutLabel.text = [tempApartmentDictionary objectForKey:@"Layout"];
     cell.directionLabel.text = [tempApartmentDictionary objectForKey:@"Direction"];
     cell.soldLabel.text = [tempApartmentDictionary objectForKey:@"IsSold"];
+    
+    int size = 17;
+    cell.apartmentLabel.font = [UIFont fontWithName:@"OpenSans" size:size];
+    cell.floorLabel.font = [UIFont fontWithName:@"OpenSans" size:size];
+    cell.wingLabel.font = [UIFont fontWithName:@"OpenSans" size:size];
+    cell.layoutLabel.font = [UIFont fontWithName:@"OpenSans" size:15];
+    cell.directionLabel.font = [UIFont fontWithName:@"OpenSans" size:size];
+    cell.soldLabel.font = [UIFont fontWithName:@"OpenSans" size:size];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
@@ -148,11 +208,25 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     apartmentDetailsDictionary = [myFilterArray objectAtIndex:indexPath.row];
     NSLog(@"apartmentDetailsDictionary = %@", apartmentDetailsDictionary);
-    [self performSegueWithIdentifier:@"DetailViewSegue" sender:self];
+    [self performSegueWithIdentifier:[[NSUserDefaults standardUserDefaults] objectForKey:@"apartmentDetailViewSegue"] sender:self];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"DetailViewSegue"]) {
+    if ([segue.identifier isEqualToString:@"DetailViewPage1Segue"]) {
+        ApartmentDetailViewPage1ViewController *myApartmentDetailViewPage1ViewController = (ApartmentDetailViewPage1ViewController *) segue.destinationViewController;
+        
+        NSString *apartmentFloorAndNumber = [apartmentDetailsDictionary objectForKey:@"Apartment"];
+        NSString *apartmentNumber = [apartmentFloorAndNumber substringFromIndex: [apartmentFloorAndNumber length] - 2];
+        
+        myApartmentDetailViewPage1ViewController.apartmentComplexLocationString = [NSString stringWithFormat:@"%@%@", [apartmentDetailsDictionary objectForKey:@"Tower"], apartmentNumber];
+        myApartmentDetailViewPage1ViewController.apartmentLayoutString = [apartmentDetailsDictionary objectForKey:@"Layout"];
+        myApartmentDetailViewPage1ViewController.apartmentString = [NSString stringWithFormat:@"%@%@", [apartmentDetailsDictionary objectForKey:@"Tower"], [apartmentDetailsDictionary objectForKey:@"Apartment"]];
+        myApartmentDetailViewPage1ViewController.towerString = [apartmentDetailsDictionary objectForKey:@"Tower"];
+        myApartmentDetailViewPage1ViewController.wingString = [apartmentDetailsDictionary objectForKey:@"Wing"];
+        myApartmentDetailViewPage1ViewController.floorString = [apartmentDetailsDictionary objectForKey:@"Floor"];
+        myApartmentDetailViewPage1ViewController.sqftString = [apartmentDetailsDictionary objectForKey:@"SQFT"];
+    }
+    if ([segue.identifier isEqualToString:@"DetailViewPage2Segue"]) {
         ApartmentDetailViewController *myApartmentDetailViewController = (ApartmentDetailViewController *) segue.destinationViewController;
         
         NSString *apartmentFloorAndNumber = [apartmentDetailsDictionary objectForKey:@"Apartment"];
@@ -161,6 +235,29 @@
         myApartmentDetailViewController.apartmentComplexLocationString = [NSString stringWithFormat:@"%@%@", [apartmentDetailsDictionary objectForKey:@"Tower"], apartmentNumber];
         myApartmentDetailViewController.apartmentLayoutString = [apartmentDetailsDictionary objectForKey:@"Layout"];
         myApartmentDetailViewController.apartmentString = [NSString stringWithFormat:@"%@%@", [apartmentDetailsDictionary objectForKey:@"Tower"], [apartmentDetailsDictionary objectForKey:@"Apartment"]];
+        myApartmentDetailViewController.towerString = [apartmentDetailsDictionary objectForKey:@"Tower"];
+        myApartmentDetailViewController.wingString = [apartmentDetailsDictionary objectForKey:@"Wing"];
+        myApartmentDetailViewController.floorString = [apartmentDetailsDictionary objectForKey:@"Floor"];
+        myApartmentDetailViewController.sqftString = [apartmentDetailsDictionary objectForKey:@"SQFT"];
+    }
+    if ([segue.identifier isEqualToString:@"DetailViewPage3Segue"]) {
+        ApartmentDetailViewPage3ViewController *myApartmentDetailViewPage3ViewController = (ApartmentDetailViewPage3ViewController *) segue.destinationViewController;
+        
+        NSString *apartmentFloorAndNumber = [apartmentDetailsDictionary objectForKey:@"Apartment"];
+        NSString *apartmentNumber = [apartmentFloorAndNumber substringFromIndex: [apartmentFloorAndNumber length] - 2];
+        
+        myApartmentDetailViewPage3ViewController.apartmentComplexLocationString = [NSString stringWithFormat:@"%@%@", [apartmentDetailsDictionary objectForKey:@"Tower"], apartmentNumber];
+        myApartmentDetailViewPage3ViewController.apartmentLayoutString = [apartmentDetailsDictionary objectForKey:@"Layout"];
+        myApartmentDetailViewPage3ViewController.apartmentString = [NSString stringWithFormat:@"%@%@", [apartmentDetailsDictionary objectForKey:@"Tower"], [apartmentDetailsDictionary objectForKey:@"Apartment"]];
+        myApartmentDetailViewPage3ViewController.towerString = [apartmentDetailsDictionary objectForKey:@"Tower"];
+        myApartmentDetailViewPage3ViewController.wingString = [apartmentDetailsDictionary objectForKey:@"Wing"];
+        myApartmentDetailViewPage3ViewController.floorString = [apartmentDetailsDictionary objectForKey:@"Floor"];
+        myApartmentDetailViewPage3ViewController.sqftString = [apartmentDetailsDictionary objectForKey:@"SQFT"];
+    }
+    if ([segue.identifier isEqualToString:@"CustomerDetailSegue"]) {
+        CustomerDetailViewController *myCustomerDetailViewController = (CustomerDetailViewController *) segue.destinationViewController;
+        
+        myCustomerDetailViewController.masterDictionary = myMasterDictionary;
     }
 }
 
@@ -455,9 +552,9 @@
 
 - (void) drawHeader {
     CGContextRef    currentContext = UIGraphicsGetCurrentContext();
-    CGContextSetRGBFillColor(currentContext, 0.3, 0.7, 0.2, 1.0);
+    CGContextSetRGBFillColor(currentContext, 0.0, 0.0, 0.0, 1.0);
     
-    NSString *textToDraw = @"NEW NEW Customer Details";
+    NSString *textToDraw = @"Customer Interest Levels";
     
     UIFont *font = [UIFont systemFontOfSize:24.0];
     
@@ -498,7 +595,7 @@
     
     CGContextSetLineWidth(currentContext, kLineWidth);
     
-    CGContextSetStrokeColorWithColor(currentContext, [UIColor blueColor].CGColor);
+    CGContextSetStrokeColorWithColor(currentContext, [UIColor blackColor].CGColor);
     
     CGPoint startPoint = CGPointMake(kMarginInset + kBorderInset, kMarginInset + kBorderInset + 40.0);
     CGPoint endPoint = CGPointMake(pageSize.width - 2*kMarginInset -2*kBorderInset, kMarginInset + kBorderInset + 40.0);
@@ -528,9 +625,6 @@
         //Draw a page number at the bottom of each page.
         currentPage++;
         [self drawPageNumber:currentPage];
-        
-        //Draw a border for each page.
-        [self drawBorder];
         
         //Draw text for our header.
         [self drawHeader];
@@ -565,9 +659,12 @@
         case MFMailComposeResultSent:
             NSLog(@"Mail sent");
             break;
-        case MFMailComposeResultFailed:
+        case MFMailComposeResultFailed: {
             NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Failed to send email" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
             break;
+        }
         default:
             break;
     }
@@ -578,21 +675,29 @@
 
 - (IBAction)segueToGeneratePDF:(id)sender {
     pageSize = CGSizeMake(612, 792);
-    NSString *fileName = @"Demo.pdf";
+    NSString *fileName = @"Customer Interest Levels.pdf";
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *pdfFileName = [documentsDirectory stringByAppendingPathComponent:fileName];
     
     [self generatePdfWithFilePath:pdfFileName];
     
+    // Email Subject
+    NSString *emailTitle = @"Customer Interest Levels";
+    // Email Content
+    NSString *messageBody = @"This PDF contains the contact details and Interest Levels of a potential customer.\n\nBest Regards.";
+    
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *emailDialog = [[MFMailComposeViewController alloc] init];
         [emailDialog setMailComposeDelegate:self];
+        [emailDialog setSubject:emailTitle];
+        [emailDialog setMessageBody:messageBody isHTML:NO];
         NSMutableData *myPdfData = [NSMutableData dataWithContentsOfFile:pdfFileName];
-        [emailDialog addAttachmentData:myPdfData mimeType:@"application/pdf" fileName:@"Demo"];
+        [emailDialog addAttachmentData:myPdfData mimeType:@"application/pdf" fileName:@"Customer Interest Levels"];
         [self.navigationController presentViewController:emailDialog animated:YES completion:nil];
     } else {
-        NSLog(@"Mail not Working!!");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Please check whether your email account has been configured with this device." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
     }
     
 }
@@ -602,14 +707,24 @@
 }
 
 - (IBAction)resetButtonPressed:(id)sender {
-    NSLog(@"Ask user to confirm");
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *myDictionary = [userDefaults dictionaryRepresentation];
-    for (id key in myDictionary) {
-        [userDefaults removeObjectForKey:key];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Are you sure you want to delete existing data?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
+    alert.tag = 100;
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == 100) {
+        if (buttonIndex == [alertView cancelButtonIndex]) {
+            //
+        } else {
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            NSDictionary *myDictionary = [userDefaults dictionaryRepresentation];
+            for (id key in myDictionary) {
+                [userDefaults removeObjectForKey:key];
+            }
+            [userDefaults synchronize];
+        }
     }
-    [userDefaults synchronize];
 }
 
 @end

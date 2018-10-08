@@ -10,6 +10,9 @@
 
 @interface CustomerDetailTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *apartmentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *layoutLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sideFacingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *soldLabel;
 @property (weak, nonatomic) IBOutlet UILabel *interestLabel;
 
 @end

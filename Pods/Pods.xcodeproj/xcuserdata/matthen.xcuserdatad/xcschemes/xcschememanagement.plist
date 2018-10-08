@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PSPushPopPressView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Goyal &amp; Co Sales App.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3949E81502C534FC74D9F739A6AAE1D0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>63628A344B746CBE1159D0A41A922260</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8B8FDF30D69E66B4542FA5EF0C0FA411</key>
+		<key>E34E9868DE3BDFE658D31C24585EF877</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E4B68AD9899412C758E03386DD7DDE6C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F2A139F96D19AEC4FCECCDFA18076312</key>
 		<dict>
 			<key>primary</key>
 			<true/>
