@@ -600,7 +600,42 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e50-od-7vG">
-                                        <rect key="frame" x="705" y="136" width="286" height="137"/>
+                                        <rect key="frame" x="705" y="136" width="286" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4F-2i-vTm">
+                                        <rect key="frame" x="705" y="165" width="286" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61Z-e1-Aje">
+                                        <rect key="frame" x="705" y="194" width="286" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q6c-2k-jOm">
+                                        <rect key="frame" x="705" y="223" width="286" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEt-tJ-dfD">
+                                        <rect key="frame" x="705" y="252" width="286" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KoA-Dq-IkZ">
+                                        <rect key="frame" x="705" y="281" width="286" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -609,7 +644,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.94891661405563354" green="0.94907897710800171" blue="0.94890636205673218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Orchid Whitefield.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hy9-G7-AAv">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Final Render Cam 04.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Hy9-G7-AAv">
                                 <rect key="frame" x="47" y="75" width="626" height="382"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -625,10 +660,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="apartmentInfoLabel" destination="61Z-e1-Aje" id="82o-Hk-RxO"/>
+                        <outlet property="floorInfoLabel" destination="e4F-2i-vTm" id="3WA-Tp-JnZ"/>
                         <outlet property="highInterestButton" destination="StB-qT-VfD" id="nxc-PN-yLP"/>
-                        <outlet property="infoLabel" destination="e50-od-7vG" id="4nn-Yq-ea5"/>
+                        <outlet property="layoutInfoLabel" destination="q6c-2k-jOm" id="qIR-tO-7Ev"/>
                         <outlet property="lowInterestButton" destination="91b-AE-kYd" id="eyk-gM-IWe"/>
                         <outlet property="mediumInterestButton" destination="6WQ-FD-488" id="fPB-m8-vV8"/>
+                        <outlet property="projectCompletionInfoLabel" destination="CEt-tJ-dfD" id="kHh-Js-HFY"/>
+                        <outlet property="startingFromInfoLabel" destination="KoA-Dq-IkZ" id="lZj-uu-yru"/>
+                        <outlet property="towerInfoLabel" destination="e50-od-7vG" id="38L-Ys-w2I"/>
                         <segue destination="8eg-Hi-sN7" kind="show" identifier="page2Segue" animates="NO" id="55i-qy-ZsN"/>
                     </connections>
                 </viewController>
@@ -915,18 +955,18 @@
         </scene>
     </scenes>
     <resources>
-        <image name="877.png" width="720" height="600"/>
+        <image name="877.png" width="737" height="527"/>
         <image name="B0218NE.jpg" width="798" height="593"/>
         <image name="B0218SE.jpg" width="798" height="592"/>
         <image name="D02.png" width="1791" height="891"/>
-        <image name="Orchid Whitefield.png" width="626" height="382"/>
+        <image name="Final Render Cam 04.jpg" width="5000" height="3750"/>
         <image name="Project Information.png" width="802" height="1209"/>
         <image name="emailicon.jpg" width="300" height="300"/>
         <image name="homeicon.png" width="1600" height="1600"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="96Q-Ta-LcI"/>
-        <segue reference="Pt4-tW-Ema"/>
         <segue reference="d10-ct-gJ4"/>
+        <segue reference="55i-qy-ZsN"/>
+        <segue reference="96Q-Ta-LcI"/>
     </inferredMetricsTieBreakers>
 </document>

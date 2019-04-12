@@ -220,7 +220,13 @@
         
         myApartmentDetailViewPage1ViewController.apartmentComplexLocationString = [NSString stringWithFormat:@"%@%@", [apartmentDetailsDictionary objectForKey:@"Tower"], apartmentNumber];
         myApartmentDetailViewPage1ViewController.apartmentLayoutString = [apartmentDetailsDictionary objectForKey:@"Layout"];
-        myApartmentDetailViewPage1ViewController.apartmentString = [NSString stringWithFormat:@"%@%@", [apartmentDetailsDictionary objectForKey:@"Tower"], [apartmentDetailsDictionary objectForKey:@"Apartment"]];
+        
+        NSString *floorNumberString = [apartmentDetailsDictionary objectForKey:@"Floor"];
+        if ([floorNumberString hasPrefix:@"0"] && [floorNumberString length] > 1) {
+            floorNumberString = [floorNumberString substringFromIndex:1];
+        }
+        myApartmentDetailViewPage1ViewController.apartmentString = [NSString stringWithFormat:@"%@%@%@", [apartmentDetailsDictionary objectForKey:@"Tower"], floorNumberString, [apartmentDetailsDictionary objectForKey:@"Wing"]];
+                                       
         myApartmentDetailViewPage1ViewController.towerString = [apartmentDetailsDictionary objectForKey:@"Tower"];
         myApartmentDetailViewPage1ViewController.wingString = [apartmentDetailsDictionary objectForKey:@"Wing"];
         myApartmentDetailViewPage1ViewController.floorString = [apartmentDetailsDictionary objectForKey:@"Floor"];

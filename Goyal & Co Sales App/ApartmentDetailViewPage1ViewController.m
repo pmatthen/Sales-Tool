@@ -19,7 +19,7 @@
 @end
 
 @implementation ApartmentDetailViewPage1ViewController
-@synthesize apartmentComplexLocationString, apartmentLayoutString, apartmentString, towerString, wingString, floorString, sqftString, infoLabel, lowInterestButton, mediumInterestButton, highInterestButton, isLowInterestButtonPressed, isMediumInterestButtonPressed, isHighInterestButtonPressed;
+@synthesize apartmentComplexLocationString, apartmentLayoutString, apartmentString, towerString, wingString, floorString, sqftString, lowInterestButton, mediumInterestButton, highInterestButton, towerInfoLabel, floorInfoLabel, apartmentInfoLabel, layoutInfoLabel, projectCompletionInfoLabel, startingFromInfoLabel, isLowInterestButtonPressed, isMediumInterestButtonPressed, isHighInterestButtonPressed;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,7 +60,83 @@
         }
     }
     
-    [infoLabel setText:[NSString stringWithFormat:@"Tower %@, Floor %@, Apartment %@, %@ Layout, Project Completion: Mid 2018", towerString, floorString, wingString, apartmentLayoutString]];
+//    [infoLabel setText:[NSString stringWithFormat:@"Tower %@, Floor %@, Apartment %@, %@ Layout, Project Completion: Mid 2018", towerString, floorString, wingString, apartmentLayoutString]];
+    
+    [towerInfoLabel setText:[NSString stringWithFormat:@"Tower %@", towerString]];
+    [floorInfoLabel setText:[NSString stringWithFormat:@"Floor %@", floorString]];
+    [apartmentInfoLabel setText:[NSString stringWithFormat:@"Apartment %@", apartmentString]];
+    [layoutInfoLabel setText:[NSString stringWithFormat:@"%@ Layout", apartmentLayoutString]];
+    [projectCompletionInfoLabel setText:@"Project Completion: Mid 2018"];
+    NSString *startingFromString = @"";
+    switch ([sqftString integerValue]) {
+        case 524:
+            startingFromString = @"47.16 Lac";
+            break;
+        case 704:
+            startingFromString = @"47.16 Lac";
+            break;
+        case 750:
+            startingFromString = @"50.6 Lac";
+            break;
+        case 840:
+            startingFromString = @"56.7 Lac";
+            break;
+        case 877:
+            startingFromString = @"58.9 Lac";
+            break;
+        case 894:
+            startingFromString = @"60 Lac";
+            break;
+        case 1123:
+            startingFromString = @"73.71 Lac";
+            break;
+        case 1163:
+            startingFromString = @"76.33 Lac";
+            break;
+        case 1173:
+            startingFromString = @"77 Lac";
+            break;
+        case 1180:
+            startingFromString = @"77.4 Lac";
+            break;
+        case 1350:
+            startingFromString = @"87.4 Lac";
+            break;
+        case 1520:
+            startingFromString = @"97.17 Lac";
+            break;
+        case 1524:
+            startingFromString = @"97.42 Lac";
+            break;
+        case 1537:
+            startingFromString = @"98.26 Lac";
+            break;
+        case 1544:
+            startingFromString = @"98.70 Lac";
+            break;
+        case 1545:
+            startingFromString = @"98.77 Lac";
+            break;
+        case 1564:
+            startingFromString = @"99.98 Lac";
+            break;
+        case 1574:
+            startingFromString = @"1.0 Cr";
+            break;
+        case 1596:
+            startingFromString = @"1.02 Cr";
+            break;
+        case 1610:
+            startingFromString = @"1.02 Cr";
+            break;
+        case 1639:
+            startingFromString = @"1.04 Cr";
+            break;
+        default:
+            break;
+    }
+    
+    [startingFromInfoLabel setText:[NSString stringWithFormat:@"Starting From %@", startingFromString]];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

@@ -18,7 +18,12 @@
 @property NSString *floorString;
 @property NSString *sqftString;
 
-@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *towerInfoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *floorInfoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *apartmentInfoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *layoutInfoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *projectCompletionInfoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *startingFromInfoLabel;
 @property (weak, nonatomic) IBOutlet UIButton *lowInterestButton;
 @property (weak, nonatomic) IBOutlet UIButton *mediumInterestButton;
 @property (weak, nonatomic) IBOutlet UIButton *highInterestButton;

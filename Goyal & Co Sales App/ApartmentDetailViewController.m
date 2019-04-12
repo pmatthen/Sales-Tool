@@ -62,7 +62,7 @@
         }
     }
     
-    [infoLabel setText:[NSString stringWithFormat:@"Tower %@, Floor %@, Apartment %@, %@ Layout, Project Completion: Mid 2018", towerString, floorString, wingString, apartmentLayoutString]];
+    [infoLabel setText:[NSString stringWithFormat:@"Tower %@, Floor %@, Apartment %@, %@ Layout, Project Completion: December 2020", towerString, floorString, wingString, apartmentLayoutString]];
     
     [apartmentComplexLocationImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", apartmentComplexLocationString]]];
     [apartmentLayoutImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", sqftString]]];
